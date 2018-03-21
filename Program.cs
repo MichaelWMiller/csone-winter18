@@ -1,82 +1,70 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace csone
-{
-  class Program
-  {
-    static void Main(string[] args)
-    {
-      System.Console.Clear();
-      Console.WriteLine("Hello User, what's your name?");
-      var myName = Console.ReadLine();
-      Console.WriteLine("Hello {0}, how's it going {0}?", myName);
-      string mood = Console.ReadLine();
-      if (mood == "good")
-      {
-        Console.WriteLine("Glad to hear it!");
-      }
-      else if (mood == "bad")
-      {
-        Console.WriteLine("Thats a bummer dude");
-      }
-      else
-      {
-        System.Console.WriteLine("Whatever");
-      }
-      // Console.WriteLine($"How Old are you {myName}");
-      // string ageString = Console.ReadLine();
-      // float age = 0f;
-      // float.TryParse(ageString, out age);
-      // if (age != 0 && age > 21)
-      // {
-      //   Console.WriteLine("Yer old enough");
-      // }
-      // else
-      // {
-      //   Console.WriteLine("Not today Kid");
-      // }
-      bool playing = true;
-      Console.WriteLine("Do you want to play a game?");
-      string choice = Console.ReadLine().ToLower();
-      if (choice[0] == 'n')
-      {
-        playing = false;
-      }
-      while (playing)
-      {
-        Random rnd = new Random();
-        int randomNumber = rnd.Next(1, 5);
-        System.Console.WriteLine("Lets Play! Pick a number between 1 and 5");
-        string guess = Console.ReadLine();
-        int numberGuess;
-        int.TryParse(guess, out numberGuess);
-        if (numberGuess == randomNumber)
-        {
-          System.Console.WriteLine(" YOU WIN!!!! ");
+namespace csone {
+    class Program {
+        static void Main (string[] args) {
+            List<string> choices = new List<string> ();
+            Dictionary<int, string> dict = new Dictionary<int, string> ();
+            dict.Add (0, "rock");
+            dict.Add (1, "paper");
+            dict.Add (2, "scissors");
+
+            choices.Add ("rock");
+            choices.Add ("paper");
+            choices.Add ("scissors");
+
+            for (int i = 0; i < choices.Count; i++) {
+                Console.WriteLine (choices[i]);
+            }
+            bool playing = true;
+            Console.WriteLine ("Play Rock-Paper-Scissors?");
+            string choice = Console.ReadLine().ToLower();
+               if (choice[0] == 'n') 
+               {
+                    playing = false;
+               }
+            while (playing) {
+                Random rnd = new Random ();
+                int randomNumber = rnd.Next (0, 3);
+                System.Console.WriteLine ("Lets Play!   Rock, paper or scissors?");
+                string guess = System.Console.ReadLine ().ToLower ();
+                char charGuess = guess[0];
+
+                string sysGuess = dict[randomNumber];
+
+                if (sysGuess[0] == charGuess) {
+                    Console.WriteLine ("I guessed " + sysGuess + "-- A Tie!");
+                }
+                if (sysGuess[0] == 'r') {
+                    if (charGuess == 'p') {
+                        Console.WriteLine ("I guessed Rock -- YOU win!");
+                    } else if (charGuess == 's') {
+                        Console.WriteLine ("I guess Rock -- I Win!");
+                    }
+                }
+                if (sysGuess[0] == 'p') {
+                    if (charGuess == 'r') {
+                        Console.WriteLine ("I guessed Paper -- I win!!");
+                    } else if (charGuess == 's') {
+                        Console.WriteLine ("I guessed Paper -- YOU win!");
+                    }
+                }
+                if (sysGuess[0] == 's') {
+                    if (charGuess == 'r') {
+                        Console.WriteLine ("I guessed Scissors -- YOU win!!");
+                    } else if (charGuess == 'p') {
+                        Console.WriteLine ("I guess Scissors -- I wiin!!");
+                    }
+
+                }
+
+                Console.WriteLine ("Do you want to play again?");
+                string playAgain = Console.ReadLine ().ToLower ();
+                if (playAgain[0] == 'n') {
+                    playing = false;
+                }
+            }
         }
-				else
-				{
-					System.Console.WriteLine("HAHA U LOSE!");
-				}
-        System.Console.WriteLine("Play Again?");
-          string play = Console.ReadLine().ToLower();
-          if (play[0] == 'n')
-          {
-            playing = false;
-          }
-      }
-			List<string> choices = new List<string>();
-			//Dictionary<string, int> myDictionary = new Dictionary<string, int>();
-			choices.Add("rock");
-			choices.Add("paper");
-			choices.Add("scissors");
-
-			for (int i = 0; i < choices.Count; i++)
-			{
-					System.Console.WriteLine(choices[i]);
-			}
-
     }
-  }
 }
