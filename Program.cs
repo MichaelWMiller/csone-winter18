@@ -24,6 +24,9 @@ namespace csone {
                {
                     playing = false;
                }
+               int wins = 0;
+                int losses = 0;
+                int ties = 0;
             while (playing) {
                 Random rnd = new Random ();
                 int randomNumber = rnd.Next (0, 3);
@@ -35,26 +38,33 @@ namespace csone {
 
                 if (sysGuess[0] == charGuess) {
                     Console.WriteLine ("I guessed " + sysGuess + "-- A Tie!");
+                    ties += 1;
                 }
                 if (sysGuess[0] == 'r') {
                     if (charGuess == 'p') {
                         Console.WriteLine ("I guessed Rock -- YOU win!");
+                        wins += 1;
                     } else if (charGuess == 's') {
                         Console.WriteLine ("I guess Rock -- I Win!");
+                        losses += 1;
                     }
                 }
                 if (sysGuess[0] == 'p') {
                     if (charGuess == 'r') {
                         Console.WriteLine ("I guessed Paper -- I win!!");
+                        losses += 1;
                     } else if (charGuess == 's') {
                         Console.WriteLine ("I guessed Paper -- YOU win!");
+                        wins +=1;
                     }
                 }
                 if (sysGuess[0] == 's') {
                     if (charGuess == 'r') {
                         Console.WriteLine ("I guessed Scissors -- YOU win!!");
+                        wins += 1;
                     } else if (charGuess == 'p') {
                         Console.WriteLine ("I guess Scissors -- I wiin!!");
+                        losses += 1;
                     }
 
                 }
@@ -62,6 +72,8 @@ namespace csone {
                 Console.WriteLine ("Do you want to play again?");
                 string playAgain = Console.ReadLine ().ToLower ();
                 if (playAgain[0] == 'n') {
+                    Console.WriteLine("At the end of this series:");
+                    Console.WriteLine("Your Wins:  " + wins + "     Your Losses:  " + losses + "     Ties:  " + ties);
                     playing = false;
                 }
             }
